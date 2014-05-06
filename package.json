@@ -8,7 +8,9 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "connect": "~2.15.0"
+  "dependencies": {
+    "express": "~4.1.1",
+    "body-parser": "~1.0.2",
+    "morgan": "~1.0.1"
   }
 }

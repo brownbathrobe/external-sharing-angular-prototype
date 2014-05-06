@@ -1,6 +1,6 @@
 'use strict';
 
-var esApp = angular.module('esApp', ['ui.bootstrap', 'ui.router']);
+var esApp = angular.module('esApp', ['ui.bootstrap', 'ui.router', 'ngResource']);
 esApp.run(
   ['$rootScope', '$state', '$stateParams',
     function ($rootScope, $state, $stateParams) {
@@ -76,7 +76,25 @@ esApp.run(
     }
   ]
 );
-esApp.controller('LibraryCtrl', function ($scope) {
+
+esApp.factory('DocumentsService', function ($resource, $q) {
+  var resource = $resource("/documents");
+  return {
+    getAll: function () {
+      var deferred = $q.defer();
+      resource.query({},
+        function (response) { deferred.resolve(response) },
+        function (response) { deferred.reject(response) });
+
+      return deferred.promise;
+    }
+  }
+});
+
+esApp.controller('LibraryCtrl', function ($scope, DocumentsService) {
+  DocumentsService.getAll().then(function (res) {
+    $scope.documents = res;
+  });
   $scope.totalItems = 100;
   $scope.currentPage = 3;
   $scope.maxSize = 5;
@@ -104,28 +122,16 @@ esApp.controller('PaginationCtrl', function ($scope) {
   $scope.bigCurrentPage = 1;
 });
 
-esApp.controller('MenuCtrl', function ($scope, $location) {
+esApp.controller('MenuCtrl', function ($scope, $location, DocumentsService) {
   $scope.oneAtATime = true;
 
   $scope.goThere = function (group) {
     $location.url(group.title);
-    debugger;
   };
 
-  $scope.groups = [
-    {
-      title: 'library',
-      docs: [
-        { name: "foo" },
-        { name: "bar" },
-        { name: "baz" }
-      ]
-    },
-    {
-      title: 'Favorites',
-      content: 'Dynamic Group Body - 2'
-    }
-  ];
+  DocumentsService.getAll().then(function (res) {
+    $scope.groups = res;
+  });
 
   $scope.items = ['Item 1', 'Item 2', 'Item 3'];
 

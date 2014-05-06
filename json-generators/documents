@@ -1,0 +1,55 @@
+  { 'name': 'AT&T',
+   documents: [
+    '{{repeat(5, 7)}}',
+    {
+        id: '{{guid()}}',
+        name: function (tags) {
+            var extensions = ['.pdf', '.exe', '.xls'];
+            var ext = extensions[Math.floor(Math.random() * extensions.length)];
+            return tags.company() + ext;
+        },
+        size: '{{numeric(1, 9)}}.4 MB',
+        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+        creator: '{{firstName()}} {{surname()}}',
+        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+
+    }
+  ]
+ },
+ { 'name': 'China Telecom',
+   documents: [
+    '{{repeat(3, 5)}}',
+    {
+        id: '{{guid()}}',
+        name: function (tags) {
+            var extensions = ['.pdf', '.exe', '.xls'];
+            var ext = extensions[Math.floor(Math.random() * extensions.length)];
+            return tags.company() + ext;
+        },
+        size: '{{numeric(1, 9)}}.4 MB',
+        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+        creator: '{{firstName()}} {{surname()}}',
+        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+
+    }
+  ]
+ },
+ { 'name': 'Polaris',
+   documents: [
+    '{{repeat(6, 9)}}',
+    {
+        id: '{{guid()}}',
+        name: function (tags) {
+            var extensions = ['.pdf', '.exe', '.xls'];
+            var ext = extensions[Math.floor(Math.random() * extensions.length)];
+            return tags.company() + ext;
+        },
+        size: '{{numeric(1, 9)}}.4 MB',
+        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+        creator: '{{firstName()}} {{surname()}}',
+        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+
+    }
+  ]
+ }
+]
