@@ -62,8 +62,10 @@
             Open only one at a time
           </label>
           <accordion close-others="oneAtATime">
-            <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
-              {{group.content}}
+            <accordion-group heading="{{group.title}}" ng-click="goThere(group)" ng-repeat="group in groups">
+              <ul>
+                <li ng-repeat="doc in group.docs">{{ doc.name }}</li>
+              </ul>
             </accordion-group>
             <accordion-group heading="Dynamic Body Content">
               <p>The body of the accordion group grows to fit the contents</p>
@@ -85,6 +87,7 @@
       </div>
 
       <div class="col-md-3">
+        <h3>Notifications</h3>
         <ul>
           <li ng-repeat="thing in [1,2,3,4,5]">
             <span>hello thing {{ thing }}</span>

@@ -62,26 +62,31 @@ esApp.run(
         // About //
         ///////////
 
-        .state('about', {
-          url: '/about',
+        .state('library', {
+          url: '/library',
 
           // Showing off how you could return a promise from templateProvider
-          templateProvider: ['$timeout',
-            function (        $timeout) {
-              return $timeout(function () {
-                return '<p class="lead">THIS IS ABOUT</p><ul>' +
-                         '<li><a href="https://github.com/angular-ui/ui-router/tree/master/sample">Source for this Sample</a></li>' +
-                         '<li><a href="https://github.com/angular-ui/ui-router">Github Main Page</a></li>' +
-                         '<li><a href="https://github.com/angular-ui/ui-router#quick-start">Quick Start</a></li>' +
-                         '<li><a href="https://github.com/angular-ui/ui-router/wiki">In-Depth Guide</a></li>' +
-                         '<li><a href="https://github.com/angular-ui/ui-router/wiki/Quick-Reference">API Reference</a></li>' +
-                       '</ul>';
-              }, 100);
-            }]
+          templateUrl: "templates/library.html"
+        })
+
+        .state('about', {
+          url: '/about',
+          templateUrl: "templates/about.html"
         })
     }
   ]
 );
+esApp.controller('LibraryCtrl', function ($scope) {
+  $scope.totalItems = 100;
+  $scope.currentPage = 3;
+  $scope.maxSize = 5;
+  $scope.totalItems = 175;
+  $scope.currentPage = 1;
+  $scope.setPage = function (page) {
+    $scope.currentPage = page;
+  }
+});
+
 esApp.controller('PaginationCtrl', function ($scope) {
   $scope.totalItems = 64;
   $scope.currentPage = 4;
@@ -99,13 +104,22 @@ esApp.controller('PaginationCtrl', function ($scope) {
   $scope.bigCurrentPage = 1;
 });
 
-esApp.controller('MenuCtrl', function ($scope) {
+esApp.controller('MenuCtrl', function ($scope, $location) {
   $scope.oneAtATime = true;
+
+  $scope.goThere = function (group) {
+    $location.url(group.title);
+    debugger;
+  };
 
   $scope.groups = [
     {
-      title: 'Library',
-      content: 'Dynamic Group Body - 1'
+      title: 'library',
+      docs: [
+        { name: "foo" },
+        { name: "bar" },
+        { name: "baz" }
+      ]
     },
     {
       title: 'Favorites',
