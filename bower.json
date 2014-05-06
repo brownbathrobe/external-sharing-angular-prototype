@@ -1,0 +1,16 @@
+{
+  "name": "external-sharing-angular-prototype",
+  "version": "0.0.0",
+  "authors": [
+    "davemaurakis <davemaurakis@gmail.com>"
+  ],
+  "moduleType": [
+    "es6",
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.2.16"
+  }
+}
