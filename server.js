@@ -4,6 +4,7 @@ var express = require('express'),
     mockDocuments = require('./data/documents'),
     mockTasks = require('./data/tasks'),
     mockNotifications = require('./data/notifications'),
+    mockRecent = require('./data/recent'),
     path = require('path'),
     port = 3030;
 
@@ -16,6 +17,10 @@ app.get('/documents', function (req, res) {
 
 app.get('/tasks', function (req, res) {
   res.send(mockTasks);
+});
+
+app.get('/recent', function (req, res) {
+  res.send(mockRecent);
 });
 
 app.get('/notifications', function (req, res) {

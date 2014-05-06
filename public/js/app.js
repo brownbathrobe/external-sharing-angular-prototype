@@ -47,32 +47,23 @@ esApp.run(
         //////////
 
         .state("home", {
-
-          // Use a url of "/" to set a states as the "index".
           url: "/",
-
-          // Example of an inline template string. By default, templates
-          // will populate the ui-view within the parent state's template.
-          // For top level states, like this one, the parent template is
-          // the index.html file. So this template will be inserted into the
-          // ui-view within index.html.
-          templateUrl: '/templates/home.html'
+          templateUrl: '/templates/recent.html'
         })
-
-        ///////////
-        // About //
-        ///////////
 
         .state('library', {
           url: '/library',
-
-          // Showing off how you could return a promise from templateProvider
           templateUrl: "templates/library.html"
         })
 
-        .state('about', {
-          url: '/about',
-          templateUrl: "templates/about.html"
+        .state('tasks', {
+          url: '/tasks',
+          templateUrl: "templates/tasks.html"
+        })
+
+        .state('reports', {
+          url: '/reports',
+          templateUrl: "templates/reports.html"
         })
     }
   ]

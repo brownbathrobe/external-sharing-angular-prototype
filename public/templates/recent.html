@@ -1,0 +1,8 @@
+<h1>What's New</h1>
+<div ng-controller="RecentCtrl">
+  <ul>
+    <li ng-repeat="document in documents">
+      {{ document.name }} {{ document.size }}
+    </li>
+  </ul>
+</div>
