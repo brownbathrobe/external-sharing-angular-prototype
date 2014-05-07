@@ -15,6 +15,9 @@
     "angular-ui-router": "~0.2.10",
     "angular-ui-bootstrap-bower": "~0.11.0",
     "bootstrap": "~3.1.1",
-    "angular-resource": "~1.2.16"
+    "angular-resource": "~1.2.16",
+    "angular-treeview": "*",
+    "angular-tree-control": "~0.1.5",
+    "angular-ui-tree": "~2.1.2"
   }
 }

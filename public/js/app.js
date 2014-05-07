@@ -1,6 +1,6 @@
 'use strict';
 
-var esApp = angular.module('esApp', ['ui.bootstrap', 'ui.router', 'ngResource']);
+var esApp = angular.module('esApp', ['ui.bootstrap', 'ui.router', 'ngResource', 'ui.tree']);
 esApp.run(
   ['$rootScope', '$state', '$stateParams',
     function ($rootScope, $state, $stateParams) {
@@ -33,32 +33,37 @@ esApp.run(
         // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
         .otherwise('/');
 
-      $locationProvider.html5Mode(true);
-
-      //////////////////////////
-      // State Configurations //
-      //////////////////////////
+      // use pushState
+      // $locationProvider.html5Mode(true);
 
       // Use $stateProvider to configure your states.
       $stateProvider
 
-        //////////
-        // Home //
-        //////////
-
         .state("home", {
           url: "/",
-          templateUrl: '/templates/recent.html'
+          templateUrl: '/templates/recent.html',
+          controller: 'RecentCtrl'
+
         })
 
         .state('library', {
           url: '/library',
-          templateUrl: "templates/library.html"
+          templateUrl: "templates/library.html",
+          controller: 'LibraryCtrl'
         })
 
         .state('tasks', {
           url: '/tasks',
-          templateUrl: "templates/tasks.html"
+          templateUrl: "templates/tasks.html",
+          controller: 'TasksCtrl',
+          resolve: {
+            events: function (DocumentsData, $q) {
+              var deferred = $q.defer();
+              deferred.resolve(DocumentsData.getAll());
+              return deferred.promise;
+            }
+          }
+
         })
 
         .state('reports', {
@@ -69,6 +74,87 @@ esApp.run(
   ]
 );
 
+esApp.controller('TreeCtrl', function ($scope, DocumentsData) {
+  $scope.$watch('abc.currentNode', function( newObj, oldObj ) {
+    var stuff = ['foo', 'bar', 'baz', 'wow', 'ho', 'ugh', 'meh', 'derp'],
+        name = stuff[Math.floor(Math.random() * stuff.length)],
+        id = Math.floor(Math.random() * 10000),
+        currentNode;
+
+    if($scope.abc && angular.isObject($scope.abc.currentNode)) {
+      currentNode = $scope.abc.currentNode;
+      console.log('Node Selected: ', currentNode);
+      currentNode.children || (currentNode.children = []);
+      $scope.abc.currentNode.children.push({ label: name, id: id });
+    }
+  }, false);
+
+  $scope.data = [
+    {
+      "id": 1,
+      "title": "node1",
+      "nodes": [
+        {
+          "id": 11,
+          "title": "node1.1",
+          "nodes": [
+            {
+              "id": 111,
+              "title": "node1.1.1",
+              "nodes": []
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "title": "node1.2",
+          "nodes": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "node2",
+      "nodes": [
+        {
+          "id": 21,
+          "title": "node2.1",
+          "nodes": []
+        },
+        {
+          "id": 22,
+          "title": "node2.2",
+          "nodes": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "node3",
+      "nodes": [
+        {
+          "id": 31,
+          "title": "node3.1",
+          "nodes": []
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "node4",
+      "nodes": [
+        {
+          "id": 41,
+          "title": "node4.1",
+          "nodes": []
+        }
+      ]
+    }
+]
+  $scope.doIt = function () {
+    debugger;
+  };
+});
 
 esApp.controller('LibraryCtrl', function ($scope, DocumentsData) {
   DocumentsData.getAll().then(function (res) {
@@ -102,25 +188,4 @@ esApp.controller('PaginationCtrl', function ($scope) {
 });
 
 esApp.controller('MenuCtrl', function ($scope, $location, DocumentsData) {
-  $scope.oneAtATime = true;
-
-  $scope.goThere = function (group) {
-    $location.url(group.title);
-  };
-
-  DocumentsData.getAll().then(function (res) {
-    $scope.groups = res;
-  });
-
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-  $scope.addItem = function() {
-    var newItemNo = $scope.items.length + 1;
-    $scope.items.push('Item ' + newItemNo);
-  };
-
-  $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
 });

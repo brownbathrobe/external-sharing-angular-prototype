@@ -1,8 +1,6 @@
 <h1>DOCUMENTS</h1>
-<div ng-controller="LibraryCtrl">
-  <ul>
-    <li ng-repeat="folder in documents">{{ folder.name }}</li>
-  </ul>
-  <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
-  <pre>The selected page no: {{currentPage}}</pre>
-</div>
+<ul>
+  <li ng-repeat="folder in documents">{{ folder.name }}</li>
+</ul>
+<pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()"></pagination>
+<pre>The selected page no: {{currentPage}}</pre>
