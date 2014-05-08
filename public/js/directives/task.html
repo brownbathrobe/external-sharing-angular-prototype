@@ -1,0 +1,13 @@
+<div style="position: relative;">
+  <span>{{task.name}} ({{task.id}})</span>
+  <span class="dropdown" is-open="status.isopen" on-toggle="toggled(open)">
+    <span class="dropdown-toggle">
+      <span class="caret"></span>
+    </span>
+    <ul class="dropdown-menu">
+      <li><a dropdown-toggle ng-click="edit(task)">edit</a></li>
+      <li><a dropdown-toggle ng-click="save(task)">save</a></li>
+      <li><a dropdown-toggle ng-click="blah()">something</a></li>
+    </ul>
+  </span>
+</div>

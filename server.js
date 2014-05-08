@@ -1,5 +1,6 @@
 var express = require('express'),
     morgan = require('morgan'),
+    bodyParser = require('body-parser'),
     app = express(),
     mockDocuments = require('./data/documents'),
     mockTasks = require('./data/tasks'),
@@ -10,6 +11,7 @@ var express = require('express'),
 
 // logging
 app.use(morgan('short'));
+app.use(bodyParser());
 
 app.get('/documents', function (req, res) {
   res.send(mockDocuments);
@@ -17,6 +19,11 @@ app.get('/documents', function (req, res) {
 
 app.get('/tasks', function (req, res) {
   res.send(mockTasks);
+});
+
+app.post('/tasks', function (req, res) {
+  console.log("=> ", req.body);
+  res.send(req.body);
 });
 
 app.get('/recent', function (req, res) {
