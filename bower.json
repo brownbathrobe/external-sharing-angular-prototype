@@ -20,6 +20,7 @@
     "angular-tree-control": "~0.1.5",
     "angular-ui-tree": "~2.1.2",
     "datatables": "~1.10.0",
-    "underscore": "~1.6.0"
+    "ng-grid": "~2.0.11",
+    "lodash": "~2.4.1"
   }
 }

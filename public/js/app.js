@@ -34,7 +34,7 @@ esApp.run(
         .otherwise('/');
 
       // use pushState
-      // $locationProvider.html5Mode(true);
+      $locationProvider.html5Mode(true);
 
       // Use $stateProvider to configure your states.
       $stateProvider

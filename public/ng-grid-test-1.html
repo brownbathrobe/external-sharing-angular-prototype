@@ -1,0 +1,30 @@
+<html ng-app="myApp">
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Getting Started With ngGrid Example</title>
+    <link rel="stylesheet" type="text/css" href="vendor/ng-grid/ng-grid.css" />
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" type="text/css" />
+
+    <script type="text/javascript" src="vendor/lodash/dist/lodash.js"></script>
+    <script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="vendor/ng-grid/build/ng-grid.js"></script>
+    <script type="text/javascript" src="ng-grid-test-1.js"></script>
+    <style>
+      .gridStyle {
+          border: 1px solid rgb(212,212,212);
+          width: 800px;
+          height: 300px;
+          float: left;
+      }
+
+      .selectedItems{
+          float: left;
+      }
+    </style>
+  </head>
+
+  <body ng-controller="MyCtrl">
+    <div class="gridStyle" ng-grid="gridOptions"></div>
+  </body>
+</html>

@@ -13,24 +13,24 @@ var express = require('express'),
 app.use(morgan('short'));
 app.use(bodyParser());
 
-app.get('/documents', function (req, res) {
+app.get('/api/documents', function (req, res) {
   res.send(mockDocuments);
 });
 
-app.get('/tasks', function (req, res) {
+app.get('/api/tasks', function (req, res) {
   res.send(mockTasks);
 });
 
-app.post('/tasks', function (req, res) {
+app.post('/api/tasks', function (req, res) {
   console.log("=> ", req.body);
   res.send(req.body);
 });
 
-app.get('/recent', function (req, res) {
+app.get('/api/recent', function (req, res) {
   res.send(mockRecent);
 });
 
-app.get('/notifications', function (req, res) {
+app.get('/api/notifications', function (req, res) {
   setTimeout(function () {
     res.send(mockNotifications);
   }, 3000);
