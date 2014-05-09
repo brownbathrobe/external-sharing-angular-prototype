@@ -1,4 +1,16 @@
-<span style="text-align: center;">
-<span class="glyphicon glyphicon-info-sign"></span>
-<span class="glyphicon glyphicon-chevron-down"></span>
-</span>
+<div class="action-icons">
+  <span class="glyphicon glyphicon-arrow-up"></span>
+  <span class="glyphicon glyphicon-arrow-down"></span>
+  <span class="glyphicon glyphicon-info-sign"></span>
+  <span class="glyphicon glyphicon-eye-open"></span>
+  <span class="dropdown" is-open="status.isopen" on-toggle="toggled(open)">
+    <span class="dropdown-toggle">
+      <span class="glyphicon glyphicon-chevron-down"></span>
+    </span>
+    <ul class="dropdown-menu dropdown-menu-right">
+      <li><a dropdown-toggle ng-click="edit(task)">start workflow</a></li>
+      <li><a dropdown-toggle ng-click="save(task)">version history</a></li>
+      <li><a dropdown-toggle ng-click="blah()">view permissions</a></li>
+    </ul>
+  </span>
+</div>

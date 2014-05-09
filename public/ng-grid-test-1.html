@@ -4,27 +4,33 @@
     <title>Getting Started With ngGrid Example</title>
     <link rel="stylesheet" type="text/css" href="vendor/ng-grid/ng-grid.css" />
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css" type="text/css" />
 
-    <script type="text/javascript" src="vendor/lodash/dist/lodash.js"></script>
-    <script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="vendor/angular/angular.js"></script>
-    <script type="text/javascript" src="vendor/ng-grid/build/ng-grid.js"></script>
-    <script type="text/javascript" src="ng-grid-test-1.js"></script>
     <style>
-      .gridStyle {
-          border: 1px solid rgb(212,212,212);
-          width: 800px;
-          height: 300px;
-          float: left;
+      .action-icons {
+        margin-top: 5px;
       }
 
-      .selectedItems{
-          float: left;
+      .action-icons > span {
+        margin-left: 2px;
+      }
+      .gridStyle {
+          border: 1px solid rgb(212,212,212);
+          height: 300px;
       }
     </style>
   </head>
 
   <body ng-controller="MyCtrl">
     <div class="gridStyle" ng-grid="gridOptions"></div>
+
+    <script type="text/javascript" src="vendor/lodash/dist/lodash.js"></script>
+    <script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="vendor/ng-grid/build/ng-grid.js"></script>
+    <script src="vendor/angular-ui-bootstrap-bower/ui-bootstrap.js" type='text/javascript'></script>
+    <script src="vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js" type='text/javascript'></script>
+    <script type="text/javascript" src="ng-grid-test-1.js"></script>
+
   </body>
 </html>

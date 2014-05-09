@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngGrid']);
+var app = angular.module('myApp', ['ngGrid', 'ui.bootstrap']);
 
 app.directive('rowTemplate', function () {
   return {
@@ -30,6 +30,13 @@ app.controller('MyCtrl', function($scope, $http) {
       return d.documents;
     }));
 
+    var folders = [
+      { name: 'folder1', folder: true },
+      { name: 'folder2', folder: true },
+      { name: 'folder3', folder: true }
+    ];
+
+    data = data.concat(folders);
     console.log(data);
 
     var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
@@ -45,14 +52,14 @@ app.controller('MyCtrl', function($scope, $http) {
       var data;
       if (searchText) {
         var ft = searchText.toLowerCase();
-        $http.get('/documents').success(function (largeLoad) {
+        $http.get('/api/documents').success(function (largeLoad) {
           data = largeLoad.filter(function(item) {
             return JSON.stringify(item).toLowerCase().indexOf(ft) != -1;
           });
           $scope.setPagingData(data,page,pageSize);
         });
       } else {
-        $http.get('/documents').success(function (largeLoad) {
+        $http.get('/api/documents').success(function (largeLoad) {
           $scope.setPagingData(largeLoad,page,pageSize);
         });
       }
@@ -73,14 +80,20 @@ app.controller('MyCtrl', function($scope, $http) {
     }
   }, true);
 
+  $scope.upload = function (row) {
+    debugger;
+  };
+
   $scope.gridOptions = {
     columnDefs: [
-      { field: 'name', displayName: 'Name', cellTemplate: '<div class="ngCellText" ng-class="col.colIndex()"><a href="blah.pdf"><span ng-cell-text>{{row.getProperty(col.field)}}</span></a></div> }' },
+      { field: 'name', displayName: 'Name', cellTemplate: '<div class="ngCellText" ng-class="col.colIndex()"><a href="docs/{{row.getProperty(\'id\')}}"><span ng-cell-text>{{row.getProperty(col.field)}}</span></a></div> }' },
       { field: 'size', displayName: 'Size' },
       { field: 'creator', displayName: 'Creator', headerClass: 'ageHeader' },
       { field: 'created', displayName: 'Created', headerClass: 'ageHeader' },
       { field: 'modified', displayName: 'Modified', headerClass: 'ageHeader' },
-      { sortable: false, displayName: 'Actions', cellTemplate: "<actions></actions>" }
+      { sortable: false, displayName: 'Actions', cellTemplate: "<actions upload='upload(row)'></actions>" }
+      // { sortable: false, displayName: 'Actions', cellTemplate: "<actions foo='{{ row }}'></actions>" }
+      // { sortable: false, displayName: 'Actions', cellTemplate: "<span ng-click='alert(row.getProperty(\"folder\"))'>yyoyoyoy</span>" }
     ],
     data: 'myData',
     enablePaging: true,
@@ -96,7 +109,10 @@ app.controller('MyCtrl', function($scope, $http) {
 
 app.directive('actions', function () {
   return {
+    scope: {
+      upload: "&"
+    },
     restrict: "E",
-    templateUrl: "actions.html"
+    templateUrl: "actions.html",
   }
 });
