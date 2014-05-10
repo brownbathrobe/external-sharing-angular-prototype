@@ -1,3 +1,4 @@
+[
   { 'name': 'AT&T',
    documents: [
     '{{repeat(5, 7)}}',
@@ -9,9 +10,9 @@
             return tags.company() + ext;
         },
         size: '{{numeric(1, 9)}}.4 MB',
-        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
         creator: '{{firstName()}} {{surname()}}',
-        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}'
 
     }
   ]
@@ -27,9 +28,9 @@
             return tags.company() + ext;
         },
         size: '{{numeric(1, 9)}}.4 MB',
-        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
         creator: '{{firstName()}} {{surname()}}',
-        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}'
 
     }
   ]
@@ -45,9 +46,9 @@
             return tags.company() + ext;
         },
         size: '{{numeric(1, 9)}}.4 MB',
-        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}',
+        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
         creator: '{{firstName()}} {{surname()}}',
-        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss Z")}}'
+        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}'
 
     }
   ]

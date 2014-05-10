@@ -26,7 +26,7 @@ app.controller('MyCtrl', function($scope, $http) {
   };
 
   $scope.setPagingData = function(data, page, pageSize){
-    data = _.flatten(data.map(function (d) {
+    window.DDD = data = _.flatten(data.map(function (d) {
       return d.documents;
     }));
 
@@ -84,14 +84,16 @@ app.controller('MyCtrl', function($scope, $http) {
     debugger;
   };
 
+  $scope.dateFormat = "date:'MM-dd-yyyy'";
+
   $scope.gridOptions = {
     columnDefs: [
       { field: 'name', displayName: 'Name', cellTemplate: '<div class="ngCellText" ng-class="col.colIndex()"><a href="docs/{{row.getProperty(\'id\')}}"><span ng-cell-text>{{row.getProperty(col.field)}}</span></a></div> }' },
       { field: 'size', displayName: 'Size' },
       { field: 'creator', displayName: 'Creator', headerClass: 'ageHeader' },
-      { field: 'created', displayName: 'Created', headerClass: 'ageHeader' },
-      { field: 'modified', displayName: 'Modified', headerClass: 'ageHeader' },
-      { sortable: false, displayName: 'Actions', cellTemplate: "<actions upload='upload(row)'></actions>" }
+      { field: 'created', displayName: 'Created', cellFilter: $scope.dateFormat },
+      { field: 'modified', displayName: 'Modified', cellFilter: $scope.dateFormat },
+      { sortable: false, displayName: 'Actions', cellTemplate: "<actions ng-class='{ folder: row.getProperty(\"folder\")}' upload='upload(row)'></actions>" }
       // { sortable: false, displayName: 'Actions', cellTemplate: "<actions foo='{{ row }}'></actions>" }
       // { sortable: false, displayName: 'Actions', cellTemplate: "<span ng-click='alert(row.getProperty(\"folder\"))'>yyoyoyoy</span>" }
     ],
@@ -113,6 +115,6 @@ app.directive('actions', function () {
       upload: "&"
     },
     restrict: "E",
-    templateUrl: "actions.html",
+    templateUrl: "actions.html"
   }
 });
