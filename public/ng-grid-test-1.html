@@ -7,26 +7,18 @@
     <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css" type="text/css" />
 
     <style>
-      .folder .action-icons {
-        display: none;
-      }
-      .action-icons {
-        margin-top: 5px;
-      }
-
-      .action-icons > span {
-        margin-left: 2px;
-      }
+      .folder .action-icons { display: none; }
+      .action-icons { margin-top: 5px; }
+      .action-icons > span { margin-left: 2px; }
       .gridStyle {
-          border: 1px solid rgb(212,212,212);
-          height: 300px;
+        border: 1px solid rgb(212,212,212);
+        height: 300px;
       }
     </style>
   </head>
 
   <body ng-controller="MyCtrl">
     <div class="gridStyle" ng-grid="gridOptions"></div>
-
     <script type="text/javascript" src="vendor/lodash/dist/lodash.js"></script>
     <script type="text/javascript" src="vendor/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="vendor/angular/angular.js"></script>

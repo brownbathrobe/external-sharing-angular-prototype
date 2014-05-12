@@ -156,36 +156,5 @@ esApp.controller('TreeCtrl', function ($scope, DocumentsData) {
   };
 });
 
-esApp.controller('LibraryCtrl', function ($scope, DocumentsData) {
-  DocumentsData.getAll().then(function (res) {
-    $scope.documents = res;
-  });
-  $scope.totalItems = 100;
-  $scope.currentPage = 3;
-  $scope.maxSize = 5;
-  $scope.totalItems = 175;
-  $scope.currentPage = 1;
-  $scope.setPage = function (page) {
-    $scope.currentPage = page;
-  }
-});
-
-esApp.controller('PaginationCtrl', function ($scope) {
-  $scope.totalItems = 64;
-  $scope.currentPage = 4;
-
-  $scope.setPage = function (pageNo) {
-    $scope.currentPage = pageNo;
-  };
-
-  $scope.pageChanged = function() {
-    console.log('Page changed to: ' + $scope.currentPage);
-  };
-
-  $scope.maxSize = 5;
-  $scope.bigTotalItems = 175;
-  $scope.bigCurrentPage = 1;
-});
-
 esApp.controller('MenuCtrl', function ($scope, $location, DocumentsData) {
 });

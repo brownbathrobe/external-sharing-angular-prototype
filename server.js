@@ -6,6 +6,7 @@ var express = require('express'),
     mockTasks = require('./data/tasks'),
     mockNotifications = require('./data/notifications'),
     mockRecent = require('./data/recent'),
+    mockLibrary = require('./data/library'),
     path = require('path'),
     port = 3030;
 
@@ -30,6 +31,10 @@ app.get('/api/recent', function (req, res) {
   res.send(mockRecent);
 });
 
+app.get('/api/library', function (req, res) {
+  res.send(mockLibrary);
+});
+
 app.get('/api/notifications', function (req, res) {
   setTimeout(function () {
     res.send(mockNotifications);
@@ -37,6 +42,10 @@ app.get('/api/notifications', function (req, res) {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', function(req, res){
+  res.sendfile(__dirname + '/public/index.html');
+});
 
 app.listen(port);
 console.log('Listening on port ' + port);

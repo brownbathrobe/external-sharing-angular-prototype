@@ -1,0 +1,40 @@
+{
+  name: '{{company()}}',
+  id: 'EDCS-{{guid()}}',
+  path: [
+    '{{repeat(2, 5)}}',
+    {
+      name: '{{company()}}',
+      id: 'EDCS-{{guid()}}'
+    }
+  ],
+
+  children: function (tags) {
+    var results = [], folder;
+
+    for (var i = 0; i < tags.integer(40, 40) ; i++) {
+      folder = Math.floor(Math.random() * 100);
+
+      if (folder % 3 !== 0) {
+
+        results.push({
+          id: tags.guid(),
+          name: tags.company() + tags.random('.pdf', '.exe', '.xls'),
+          type: 'file',
+          size: tags.floating(0,4,2) + "MB",
+          created: tags.date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss"),
+          creator: tags.firstName() + " " + tags.surname(),
+          modified: tags.date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")
+        });
+      } else {
+        results.push({
+          id: tags.guid(),
+          name: tags.company(),
+          type: 'folder'
+        });
+      }
+    }
+    return results;
+  }
+}
+
