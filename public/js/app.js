@@ -43,16 +43,14 @@ esApp.run(
           url: "/",
           templateUrl: '/templates/recent.html',
           controller: 'RecentCtrl'
-
         })
 
         .state('library', {
           url: '/library',
-          templateUrl: "templates/library.html",
+          templateUrl: "/templates/library.html",
           controller: 'LibraryCtrl',
           resolve: {
             stuff: function ($q, LibraryData) {
-              debugger;
               var deferred = $q.defer();
               deferred.resolve(LibraryData.getStuff());
               console.log('resolving');
@@ -63,7 +61,7 @@ esApp.run(
 
         .state('bll', {
           url: '/library/:id',
-          templateUrl: "templates/library.html",
+          templateUrl: "/templates/library.html",
           controller: 'LibraryCtrl',
           resolve: {
             stuff: function ($q, LibraryData) {
@@ -100,7 +98,7 @@ esApp.run(
 esApp.directive('rowTemplate', function () {
   return {
     restrict: "E",
-    templateUrl: "row-template.html",
+    templateUrl: "/row-template.html",
     link: function ($scope) {
       $scope.doIt = function () {
         alert('doit!!!');
@@ -115,89 +113,14 @@ esApp.directive('actions', function () {
       upload: "&"
     },
     restrict: "E",
-    templateUrl: "actions.html"
+    templateUrl: "/actions.html"
   }
 });
 
 esApp.controller('TreeCtrl', function ($scope, TreeData) {
   $scope.data = TreeData.query();
-  // $scope.$watch('abc.currentNode', function( newObj, oldObj ) {
-  //   var stuff = ['foo', 'bar', 'baz', 'wow', 'ho', 'ugh', 'meh', 'derp'],
-  //       name = stuff[Math.floor(Math.random() * stuff.length)],
-  //       id = Math.floor(Math.random() * 10000),
-  //       currentNode;
-
-  //   if($scope.abc && angular.isObject($scope.abc.currentNode)) {
-  //     currentNode = $scope.abc.currentNode;
-  //     console.log('Node Selected: ', currentNode);
-  //     currentNode.children || (currentNode.children = []);
-  //     $scope.abc.currentNode.children.push({ label: name, id: id });
-  //   }
-  // }, false);
-
-  $scope.boo = [
-    {
-      "id": 1,
-      "title": "node1",
-      "nodes": [
-        {
-          "id": 11,
-          "title": "node1.1",
-          "nodes": [
-            {
-              "id": 111,
-              "title": "node1.1.1",
-              "nodes": []
-            }
-          ]
-        },
-        {
-          "id": 12,
-          "title": "node1.2",
-          "nodes": []
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "node2",
-      "nodes": [
-        {
-          "id": 21,
-          "title": "node2.1",
-          "nodes": []
-        },
-        {
-          "id": 22,
-          "title": "node2.2",
-          "nodes": []
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "title": "node3",
-      "nodes": [
-        {
-          "id": 31,
-          "title": "node3.1",
-          "nodes": []
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "title": "node4",
-      "nodes": [
-        {
-          "id": 41,
-          "title": "node4.1",
-          "nodes": []
-        }
-      ]
-    }
-]
 });
 
-esApp.controller('MenuCtrl', function ($scope, $location, DocumentsData) {
+esApp.controller('MenuCtrl', function ($scope, $stateParams, $location, DocumentsData) {
+  window.LLL = $scope.location = $location;
 });

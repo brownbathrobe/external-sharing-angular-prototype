@@ -1,56 +1,24 @@
 [
-  { 'name': 'AT&T',
-   documents: [
-    '{{repeat(5, 7)}}',
-    {
-        id: '{{guid()}}',
-        name: function (tags) {
-            var extensions = ['.pdf', '.exe', '.xls'];
-            var ext = extensions[Math.floor(Math.random() * extensions.length)];
-            return tags.company() + ext;
-        },
-        size: '{{numeric(1, 9)}}.4 MB',
-        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
-        creator: '{{firstName()}} {{surname()}}',
-        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}'
-
+  '{{repeat(8)}}',
+  {
+    "size": '{{floating(0,5,1)}} MB',
+    "islocked": '{{bool()}}',
+    "version": 1,
+    "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "type": '{{random("pdf", "jpg", "mp3")}}',
+    "name": function (tags) {
+      return tags.company() + "." + this.type;
+    },
+    "owner": null,
+    "description": '{{lorem(3)}}',
+    "title": function (tags) { return this.name; },
+    "nodeId": '{{guid()}}',
+    "created": '{{date(null, null,"MM-dd-YYYY")}}',
+    "modifed": '{{date(null, null,"MM-dd-YYYY")}}',
+    "security":"Cisco Highly Confidential",
+    "modifier":"pobabu",
+    "downloadUrl": function (tags) {
+      return "https://docsx.cisco.com/alfext/download?id=" + this.nodeId;
     }
-  ]
- },
- { 'name': 'China Telecom',
-   documents: [
-    '{{repeat(3, 5)}}',
-    {
-        id: '{{guid()}}',
-        name: function (tags) {
-            var extensions = ['.pdf', '.exe', '.xls'];
-            var ext = extensions[Math.floor(Math.random() * extensions.length)];
-            return tags.company() + ext;
-        },
-        size: '{{numeric(1, 9)}}.4 MB',
-        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
-        creator: '{{firstName()}} {{surname()}}',
-        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}'
-
-    }
-  ]
- },
- { 'name': 'Polaris',
-   documents: [
-    '{{repeat(6, 9)}}',
-    {
-        id: '{{guid()}}',
-        name: function (tags) {
-            var extensions = ['.pdf', '.exe', '.xls'];
-            var ext = extensions[Math.floor(Math.random() * extensions.length)];
-            return tags.company() + ext;
-        },
-        size: '{{numeric(1, 9)}}.4 MB',
-        created: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
-        creator: '{{firstName()}} {{surname()}}',
-        modified: '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}'
-
-    }
-  ]
- }
+  }
 ]

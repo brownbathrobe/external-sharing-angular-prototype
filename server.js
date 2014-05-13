@@ -28,7 +28,6 @@ app.get('/api/tasks', function (req, res) {
 });
 
 app.post('/api/tasks', function (req, res) {
-  console.log("=> ", req.body);
   res.send(req.body);
 });
 
@@ -49,6 +48,7 @@ app.get('/api/notifications', function (req, res) {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('*', function(req, res){
+  console.log('=================> catchall: ' + req.url);
   res.sendfile(__dirname + '/public/index.html');
 });
 

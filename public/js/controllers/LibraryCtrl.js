@@ -1,11 +1,7 @@
-angular.module('esApp').controller('LibraryCtrl', ['stuff', '$scope', 'LibraryData', '$stateParams', function (stuff, $scope, LibraryData, $stateParams) {
+angular.module('esApp').controller('LibraryCtrl', ['$scope', 'LibraryData', '$stateParams', function ($scope, LibraryData, $stateParams) {
   $scope.$on('loadFolder', function () {
     console.log('loading data');
   });
-
-  $scope.stuff = stuff;
-  window.LIBSCOPE = $scope;
-  window.STATEPARAMS = $stateParams;
 
   $scope.doSomething = function () {
     $scope.$emit('loadFolder');
@@ -18,11 +14,9 @@ angular.module('esApp').controller('LibraryCtrl', ['stuff', '$scope', 'LibraryDa
   };
 
   $scope.getLibraryData = function (pageSize, page, searchText) {
-    // console.log('getting library data');
     if ($scope.fetched) {
       $scope.setPagingData($scope.children, page, pageSize);
     } else {
-      window.LLLL = LibraryData;
       LibraryData.getStuff().then(function (directory) {
         var data = $scope.data = directory;
         var children = $scope.children = directory.children;
@@ -42,6 +36,4 @@ angular.module('esApp').controller('LibraryCtrl', ['stuff', '$scope', 'LibraryDa
       $scope.$apply();
     }
   };
-
 }]);
-

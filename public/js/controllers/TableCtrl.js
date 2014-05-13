@@ -24,9 +24,6 @@ angular.module('esApp').controller('TableCtrl', ['$scope', function ($scope) {
 
   $scope.dateFormat = "date:'MM-dd-yyyy'";
 
-  $scope.doSomething = function () {
-    $scope.$emit('loadFolder');
-  };
 
   $scope.gridOptions = {
     columnDefs: [
