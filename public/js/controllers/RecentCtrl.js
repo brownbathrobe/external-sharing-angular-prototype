@@ -1,11 +1,15 @@
 angular.module('esApp').controller('RecentCtrl', function ($scope, RecentData) {
+  $scope.allDocuments = [];
+
   RecentData.getStuff().then(function (docs) {
-    $scope.documents = docs;
+    $scope.allDocuments = docs;
+    filterDocuments($scope.filterOptions.numberOfDays);
   });
 
   $scope.filterOptions = {
     filterText: "",
-    useExternalFilter: true
+    useExternalFilter: true,
+    numberOfDays: 7
   };
 
   $scope.pagingOptions = {
@@ -14,7 +18,33 @@ angular.module('esApp').controller('RecentCtrl', function ($scope, RecentData) {
     currentPage: 1
   };
 
-  $scope.totalServerItems = 0;
+
+  $scope.$watch('filterOptions.numberOfDays', filterDocuments);
+  $scope.ranges = [ 7, 30 ];
+
+  function filterDocuments (newVal, oldVal) {
+    if (newVal) {
+      var val = parseInt(newVal, 10);
+      if (val) {
+        $scope.filteredDocuments = [];
+        $scope.allDocuments.forEach(function(r) {
+          var date = new Date();
+          date.setDate(date.getDate() - parseInt($scope.filterOptions.numberOfDays, 10));
+          var docDate = new Date(r.created);
+          if (docDate >= date) {
+            $scope.filteredDocuments.push(r);
+          }
+        });
+      }
+      else {
+        $scope.filteredDocuments = $scope.allDocuments;
+      }
+    }
+    else {
+      $scope.filteredDocuments = $scope.allDocuments;
+    }
+    window.FILTERED = $scope.filteredDocuments;
+  }
 
   $scope.dateFormat = "date:'MM-dd-yyyy'";
 
@@ -29,14 +59,16 @@ angular.module('esApp').controller('RecentCtrl', function ($scope, RecentData) {
       { field: 'modified', displayName: 'Modified', cellFilter: $scope.dateFormat },
       { sortable: false, displayName: 'Actions', cellTemplate: "<actions ng-class='{ folder: row.getProperty(\"type\") === \"folder\"}' upload='upload(row)'></actions>" }
     ],
-    data: 'documents',
+    data: 'filteredDocuments',
     enablePaging: true,
     showFooter: true,
+    footerRowHeight: 60,
     enableColumnResize: true,
     enableRowSelection: false,
-    totalServerItems: 'totalServerItems',
+    // totalServerItems: 'totalServerItems',
     pagingOptions: $scope.pagingOptions,
     filterOptions: $scope.filterOptions,
-    rowTemplate: '<row-template></row-template>'
+    rowTemplate: '<row-template></row-template>',
+    footerTemplate: 'footer-tester.html'
   };
 });
