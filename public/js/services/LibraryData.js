@@ -1,9 +1,9 @@
-angular.module('esApp').factory('DocumentsData', function ($resource, $q) {
-  var resource = $resource("/api/documents");
+angular.module('esApp').factory('LibraryData', function ($resource, $q) {
+  var resource = $resource("/api/library");
   return {
-    getAll: function () {
+    getStuff: function () {
       var deferred = $q.defer();
-      resource.query({},
+      resource.get({},
         function (response) { deferred.resolve(response) },
         function (response) { deferred.reject(response) });
 

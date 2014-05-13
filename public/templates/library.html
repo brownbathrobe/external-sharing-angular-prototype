@@ -1,4 +1,10 @@
-<h1>DOCUMENTS</h1>
-<ul>
-  <li ng-repeat="folder in documents">{{ folder.name }}</li>
+<hr/>
+<ul class="breadcrumb">
+  <li ng-class="{ active: dir === library.current() }" ng-repeat="dir in path">
+    <a href="/library/{{dir.id}}" ng-click="doSomething(dir)">{{dir.name}}</a>
+  </li>
 </ul>
+<hr/>
+<div ng-controller='TableCtrl'>
+<div class="gridStyle" ng-grid="gridOptions"></div>
+</div>

@@ -7,12 +7,17 @@ var express = require('express'),
     mockNotifications = require('./data/notifications'),
     mockRecent = require('./data/recent'),
     mockLibrary = require('./data/library'),
+    mockTree = require('./data/tree'),
     path = require('path'),
     port = 3030;
 
 // logging
 app.use(morgan('short'));
 app.use(bodyParser());
+
+app.get('/api/tree', function (req, res) {
+  res.send(mockTree);
+});
 
 app.get('/api/documents', function (req, res) {
   res.send(mockDocuments);

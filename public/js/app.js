@@ -1,6 +1,6 @@
 'use strict';
 
-var esApp = angular.module('esApp', ['ui.bootstrap', 'ui.router', 'ngResource', 'ui.tree']);
+var esApp = angular.module('esApp', ['ui.bootstrap', 'ui.router', 'ngResource', 'ui.tree', 'ngGrid']);
 esApp.run(
   ['$rootScope', '$state', '$stateParams',
     function ($rootScope, $state, $stateParams) {
@@ -49,7 +49,30 @@ esApp.run(
         .state('library', {
           url: '/library',
           templateUrl: "templates/library.html",
-          controller: 'LibraryCtrl'
+          controller: 'LibraryCtrl',
+          resolve: {
+            stuff: function ($q, LibraryData) {
+              debugger;
+              var deferred = $q.defer();
+              deferred.resolve(LibraryData.getStuff());
+              console.log('resolving');
+              return deferred.promise;
+            }
+          }
+        })
+
+        .state('bll', {
+          url: '/library/:id',
+          templateUrl: "templates/library.html",
+          controller: 'LibraryCtrl',
+          resolve: {
+            stuff: function ($q, LibraryData) {
+              var deferred = $q.defer();
+              deferred.resolve(LibraryData.getStuff());
+              return deferred.promise;
+              console.log('resolving library');
+            }
+          }
         })
 
         .state('tasks', {
@@ -74,22 +97,45 @@ esApp.run(
   ]
 );
 
-esApp.controller('TreeCtrl', function ($scope, DocumentsData) {
-  $scope.$watch('abc.currentNode', function( newObj, oldObj ) {
-    var stuff = ['foo', 'bar', 'baz', 'wow', 'ho', 'ugh', 'meh', 'derp'],
-        name = stuff[Math.floor(Math.random() * stuff.length)],
-        id = Math.floor(Math.random() * 10000),
-        currentNode;
-
-    if($scope.abc && angular.isObject($scope.abc.currentNode)) {
-      currentNode = $scope.abc.currentNode;
-      console.log('Node Selected: ', currentNode);
-      currentNode.children || (currentNode.children = []);
-      $scope.abc.currentNode.children.push({ label: name, id: id });
+esApp.directive('rowTemplate', function () {
+  return {
+    restrict: "E",
+    templateUrl: "row-template.html",
+    link: function ($scope) {
+      $scope.doIt = function () {
+        alert('doit!!!');
+      }
     }
-  }, false);
+  }
+});
 
-  $scope.data = [
+esApp.directive('actions', function () {
+  return {
+    scope: {
+      upload: "&"
+    },
+    restrict: "E",
+    templateUrl: "actions.html"
+  }
+});
+
+esApp.controller('TreeCtrl', function ($scope, TreeData) {
+  $scope.data = TreeData.query();
+  // $scope.$watch('abc.currentNode', function( newObj, oldObj ) {
+  //   var stuff = ['foo', 'bar', 'baz', 'wow', 'ho', 'ugh', 'meh', 'derp'],
+  //       name = stuff[Math.floor(Math.random() * stuff.length)],
+  //       id = Math.floor(Math.random() * 10000),
+  //       currentNode;
+
+  //   if($scope.abc && angular.isObject($scope.abc.currentNode)) {
+  //     currentNode = $scope.abc.currentNode;
+  //     console.log('Node Selected: ', currentNode);
+  //     currentNode.children || (currentNode.children = []);
+  //     $scope.abc.currentNode.children.push({ label: name, id: id });
+  //   }
+  // }, false);
+
+  $scope.boo = [
     {
       "id": 1,
       "title": "node1",
@@ -151,9 +197,6 @@ esApp.controller('TreeCtrl', function ($scope, DocumentsData) {
       ]
     }
 ]
-  $scope.doIt = function () {
-    debugger;
-  };
 });
 
 esApp.controller('MenuCtrl', function ($scope, $location, DocumentsData) {
