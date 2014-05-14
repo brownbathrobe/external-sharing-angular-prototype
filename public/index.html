@@ -63,17 +63,10 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="row">
-      <hr/>
-      <div class="col-sm-12">
-      </div>
-      <hr/>
-    </div>
-
     <div class="container-fluid">
       <div class="row" id="myRow">
         <div class="col-sm-2">
-          <div ng-controller='MenuCtrl'>
+          <div ng-controller='MenuCtrl' class='navbar navbar-default'>
             <ul class="nav nav-pills nav-stacked">
               <li ng-class="{ active: location.$$path === '/' }"><a href="/">What's New</a></li>
               <accordion>
