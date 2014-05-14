@@ -40,9 +40,7 @@ app.get('/api/library', function (req, res) {
 });
 
 app.get('/api/notifications', function (req, res) {
-  setTimeout(function () {
-    res.send(mockNotifications);
-  }, 3000);
+  res.send(mockNotifications);
 });
 
 app.use(express.static(path.join(__dirname, 'public')));

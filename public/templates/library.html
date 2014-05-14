@@ -1,10 +1,13 @@
-<hr/>
-<ul class="breadcrumb">
-  <li ng-class="{ active: dir === library.current() }" ng-repeat="dir in path">
-    <a href="/library/{{dir.id}}" ng-click="doSomething(dir)">{{dir.name}}</a>
-  </li>
-</ul>
-<hr/>
-<div ng-controller='TableCtrl'>
-<div class="gridStyle" ng-grid="gridOptions"></div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <ul class="breadcrumb">
+        <li ng-class="{ active: dir === library.current() }" ng-repeat="dir in path">
+          <a href="/library/{{dir.id}}" ng-click="doSomething(dir)">{{dir.name}}</a>
+        </li>
+      </ul>
+    </div>
+
+  <div ng-controller='TableCtrl'>
+    <div class="gridStyle" ng-grid="gridOptions"></div>
+  </div>
 </div>

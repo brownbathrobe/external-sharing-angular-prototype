@@ -69,25 +69,26 @@
           <div ng-controller='MenuCtrl' class='navbar navbar-default'>
             <ul class="nav nav-pills nav-stacked">
               <li ng-class="{ active: location.$$path === '/' }"><a href="/">What's New</a></li>
-              <accordion>
-                <accordion-group>
-                  <accordion-heading>
-                    <a href="/library">Librarzzzz</a></li>
-                  </accordion-heading>
-                  <div ng-controller="TreeCtrl">
-                    <script type="text/ng-template" id="nodes_renderer.html">
-                      <a href="/library/{{node.nodeId}}">{{node.name}}</a>
-                      <ol ui-tree-nodes="" ng-model="node.nodes">
-                        <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
-                        </li>
-                      </ol>
-                    </script>
+              <li ng-class="{ active: location.$$path === '/library' }">
+                <!-- <a href="" data-toggle="collapse" data-target="#blah">Library</a> -->
+                <a href="/library" ng-click="isOpen = !isOpen">Library</a>
+                <div id="blah" ng-controller="TreeCtrl" collapse="!isOpen">
+                  <script type="text/ng-template" id="nodes_renderer.html">
+                    <a href="/library/{{node.nodeId}}">{{node.name}}</a>
+                    <ol ui-tree-nodes="" ng-model="node.nodes">
+                      <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
+                      </li>
+                    </ol>
+                  </script>
 
-                    <div data-drag-enabled="false" ui-tree>
-                      <ol ui-tree-nodes="" ng-model="data" id="tree-root">
-                        <li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
-                      </ol>
-                    </div>
+                  <div data-drag-enabled="false" ui-tree>
+                    <ol ui-tree-nodes="" ng-model="data" id="tree-root">
+                      <li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                    </ol>
+                  </div>
+                </div>
+              </li>
+
 
                     <!-- <div -->
                     <!--     data-angular-treeview="true" -->
@@ -97,10 +98,6 @@
                     <!--     data-node-label="label" -->
                     <!--     data-node-children="children" > -->
                     <!-- </div> -->
-                  </div>
-                </accordion-group>
-              </accordion>
-
               <li ng-class="{ active: location.$$path === '/tasks' }"><a href="/tasks">My Tasks</a></li>
               <li ng-class="{ active: location.$$path === '/reports' }"><a href="/reports">Reports</a></li>
             </ul>
@@ -108,17 +105,28 @@
         </div>
 
         <div class="col-sm-8">
-          <div ui-view class="slide" style="border: 1px solid;"></div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div ui-view class="slide"></div>
+            </div>
+          </div>
         </div>
 
         <div class="col-sm-2">
           <div ng-controller="NotificationsCtrl">
-            <h3>Notifications</h3>
-            <ul>
-              <li ng-repeat="notification in notifications">
-                <span>{{ notification.text }}!!!</span>
-              </li>
-            </ul>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Notifications</h3>
+              </div>
+              <div class="panel-body">
+                <ul>
+                  <li ng-repeat="notification in notifications">
+                    <span>{{ notification.text }}!!!</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
