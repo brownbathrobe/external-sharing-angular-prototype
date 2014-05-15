@@ -1,6 +1,23 @@
-angular.module('esApp').controller('LibraryCtrl', ['$scope', 'LibraryData', '$stateParams', function ($scope, LibraryData, $stateParams) {
+angular.module('esApp').controller('LibraryCtrl',
+['$scope', 'LibraryData', '$stateParams', '$location', 'folderData',
+function ($scope, LibraryData, $stateParams, $location, folderData) {
+  function parseFolderData(directory) {
+    $scope.data = directory;
+    $scope.children = directory.children;
+    $scope.path = directory.path;
+  }
+
+  parseFolderData(folderData);
+
   $scope.$on('loadFolder', function () {
     console.log('loading data');
+  });
+
+  // load new directory when the query string changes
+  $scope.$watch(function () {
+    return $location.search()
+  }, function (newVal, oldVal) {
+    console.log('loading more stuff');
   });
 
   $scope.doSomething = function () {
@@ -13,28 +30,17 @@ angular.module('esApp').controller('LibraryCtrl', ['$scope', 'LibraryData', '$st
     currentPage: 1
   };
 
-  $scope.getLibraryData = function (pageSize, page, searchText) {
-    if ($scope.fetched) {
-      $scope.setPagingData($scope.children, page, pageSize);
-    } else {
-      LibraryData.getStuff().then(function (directory) {
-        var data = $scope.data = directory;
-        var children = $scope.children = directory.children;
-        $scope.path = data.path;
-        $scope.setPagingData(children, page, pageSize);
-        $scope.fetched = true;
-      });
-    }
-  };
+  $scope.setPagingData = function () {
+    var page = $scope.pagingOptions.currentPage,
+        pageSize = $scope.pagingOptions.pageSize;
 
-  $scope.getLibraryData($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage);
-
-  $scope.setPagingData = function(data, page, pageSize){
-    var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
+    var pagedData = $scope.children.slice((page - 1) * pageSize, page * pageSize);
     $scope.myData = pagedData;
-    $scope.totalServerItems = data.length;
+    $scope.totalServerItems = $scope.children.length;
     if (!$scope.$$phase) {
       $scope.$apply();
     }
   };
+
+  $scope.setPagingData();
 }]);

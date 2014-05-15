@@ -27,7 +27,6 @@ esApp.run(
 
         // The `when` method says if the url is ever the 1st param, then redirect to the 2nd param
         // Here we are just setting up some convenience urls.
-        .when('/c?id', '/contacts/:id')
         .when('/user/:id', '/contacts/:id')
 
         // If the url is ever invalid, e.g. '/asdf', then redirect to '/' aka the home state
@@ -50,25 +49,11 @@ esApp.run(
           templateUrl: "/templates/library.html",
           controller: 'LibraryCtrl',
           resolve: {
-            stuff: function ($q, LibraryData) {
+            folderData: function ($q, $location, LibraryData) {
+              var query = $location.search();
               var deferred = $q.defer();
-              deferred.resolve(LibraryData.getStuff());
-              console.log('resolving');
+              deferred.resolve(LibraryData.getStuff(query));
               return deferred.promise;
-            }
-          }
-        })
-
-        .state('bll', {
-          url: '/library/:id',
-          templateUrl: "/templates/library.html",
-          controller: 'LibraryCtrl',
-          resolve: {
-            stuff: function ($q, LibraryData) {
-              var deferred = $q.defer();
-              deferred.resolve(LibraryData.getStuff());
-              return deferred.promise;
-              console.log('resolving library');
             }
           }
         })
@@ -78,13 +63,12 @@ esApp.run(
           templateUrl: "templates/tasks.html",
           controller: 'TasksCtrl',
           resolve: {
-            events: function (DocumentsData, $q) {
+            tasks: function (TasksData, $q) {
               var deferred = $q.defer();
-              deferred.resolve(DocumentsData.getAll());
+              deferred.resolve(TasksData.query());
               return deferred.promise;
             }
           }
-
         })
 
         .state('reports', {
@@ -121,8 +105,7 @@ esApp.controller('TreeCtrl', function ($scope, TreeData) {
   $scope.data = TreeData.query();
 });
 
-esApp.controller('MenuCtrl', function ($scope, $stateParams, $location, DocumentsData) {
-  window.LLL = $scope.location = $location;
+esApp.controller('MenuCtrl', function ($scope) {
 });
 
 esApp.directive('whenActive', function ($location) {

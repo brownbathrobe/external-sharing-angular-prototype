@@ -7,16 +7,12 @@ angular.module('esApp').controller('TableCtrl', ['$scope', function ($scope) {
   $scope.totalServerItems = 0;
   $scope.$watch('pagingOptions', function (newVal, oldVal) {
     console.log('library pagingOptions');
-    // if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
-    $scope.getLibraryData($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
-    // }
+    $scope.setPagingData();
   }, true);
 
   $scope.$watch('filterOptions', function (newVal, oldVal) {
-    //emit a load more data event?
-    // if (newVal !== oldVal) {
-    $scope.getLibraryData($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
-    // }
+    console.log('library filterOptions');
+    $scope.setPagingData();
   }, true);
 
   $scope.upload = function (row) {

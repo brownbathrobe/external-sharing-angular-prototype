@@ -1,10 +1,9 @@
-angular.module('esApp').controller('TasksCtrl', function ($scope, $modal, $log, TasksData) {
-  $scope.tasks = TasksData.query();
+angular.module('esApp').controller('TasksCtrl', function (tasks, $scope, $modal, $log) {
+  $scope.tasks = tasks;
 
   $scope.save = function (task) {
     alert('save');
   };
-
 
   $scope.edit = function (task) {
     $scope.open(task);
