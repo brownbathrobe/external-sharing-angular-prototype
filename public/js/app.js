@@ -124,3 +124,21 @@ esApp.controller('TreeCtrl', function ($scope, TreeData) {
 esApp.controller('MenuCtrl', function ($scope, $stateParams, $location, DocumentsData) {
   window.LLL = $scope.location = $location;
 });
+
+esApp.directive('whenActive', function ($location) {
+  return {
+    scope: true,
+    link: function (scope, element, attrs) {
+      scope.$watch(function () {
+        return $location.path();
+      }, function (newPath, oldPath) {
+        _.each(element.find('> li'), function (li) {
+          var $li = angular.element(li),
+              pattern = $li.data('match-route'),
+              regexp = new RegExp('^\\' + pattern + "$", ['i']);
+          $li.toggleClass('active', regexp.test(newPath));
+        });
+      });
+    }
+  };
+});
