@@ -70,9 +70,8 @@
             <ul class="nav nav-pills nav-stacked">
               <li ng-class="{ active: location.$$path === '/' }"><a href="/">What's New</a></li>
               <li ng-class="{ active: location.$$path === '/library' }">
-                <!-- <a href="" data-toggle="collapse" data-target="#blah">Library</a> -->
                 <a href="/library" ng-click="isOpen = !isOpen">Library</a>
-                <div id="blah" ng-controller="TreeCtrl" collapse="!isOpen">
+                <div ng-controller="TreeCtrl" collapse="!isOpen">
                   <script type="text/ng-template" id="nodes_renderer.html">
                     <a href="/library/{{node.nodeId}}">{{node.name}}</a>
                     <ol ui-tree-nodes="" ng-model="node.nodes">
@@ -121,7 +120,7 @@
               <div class="panel-body">
                 <ul>
                   <li ng-repeat="notification in notifications">
-                    <span>{{ notification.text }}!!!</span>
+                    <span>{{ notification.text }}</span>
                   </li>
                 </ul>
               </div>

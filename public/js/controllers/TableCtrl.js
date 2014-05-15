@@ -6,6 +6,7 @@ angular.module('esApp').controller('TableCtrl', ['$scope', function ($scope) {
 
   $scope.totalServerItems = 0;
   $scope.$watch('pagingOptions', function (newVal, oldVal) {
+    console.log('library pagingOptions');
     // if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
     $scope.getLibraryData($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
     // }

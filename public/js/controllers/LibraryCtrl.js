@@ -22,6 +22,7 @@ angular.module('esApp').controller('LibraryCtrl', ['$scope', 'LibraryData', '$st
         var children = $scope.children = directory.children;
         $scope.path = data.path;
         $scope.setPagingData(children, page, pageSize);
+        $scope.fetched = true;
       });
     }
   };
