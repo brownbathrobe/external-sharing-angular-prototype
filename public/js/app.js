@@ -101,8 +101,9 @@ esApp.directive('actions', function () {
   }
 });
 
-esApp.controller('TreeCtrl', function ($scope, TreeData) {
+esApp.controller('TreeCtrl', function ($scope, TreeData, $timeout) {
   $scope.data = TreeData.query();
+  $scope.initialState = true;
 });
 
 esApp.controller('MenuCtrl', function ($scope) {

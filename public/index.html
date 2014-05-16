@@ -5,20 +5,10 @@
     <title>External Sharing Angular Prototype</title>
     <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap-theme.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/angular-treeview/css/angular.treeview.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/angular-ui-tree/dist/angular-ui-tree.min.css" />
     <link rel="stylesheet" href="/vendor/ng-grid/ng-grid.css" type="text/css" />
     <link rel="stylesheet" href="/css/document_types_sprite.css" type="text/css" />
-    <style>
-      #tree-root { margin-left: 25px; }
-      .folder .action-icons { display: none; }
-      .action-icons { margin-top: 5px; }
-      .action-icons > span { margin-left: 2px; }
-      .gridStyle {
-        border: 1px solid rgb(212,212,212);
-        height: 300px;
-      }
-    </style>
+    <link rel="stylesheet" href="/css/app.css" type="text/css" />
 
   </head>
   <body ng-cloak>
@@ -71,34 +61,15 @@
           <div ng-controller='MenuCtrl' class='navbar navbar-default'>
             <ul class="nav nav-pills nav-stacked" when-active>
               <li data-match-route="/"><a href="/">What's New</a></li>
-              <li data-match-route="/library">
-                <a href="/library">Library</a>
+              <li data-match-route="/library"><a href="/library">Library</a>
                 <div ng-controller="TreeCtrl">
-                  <script type="text/ng-template" id="nodes_renderer.html">
-                    <a href="/library?folder={{node.nodeId}}">{{node.name}}</a>
-                    <ol ui-tree-nodes="" ng-model="node.nodes">
-                      <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'nodes_renderer.html'">
-                      </li>
-                    </ol>
-                  </script>
-
-                  <div data-drag-enabled="false" ui-tree>
-                    <ol ui-tree-nodes="" ng-model="data" id="tree-root">
-                      <li ng-repeat="node in data" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                  <div data-drag-enabled="false" ui-tree id="tree-root">
+                    <ol ui-tree-nodes="" ng-model="data">
+                      <li ng-repeat="node in data" ui-tree-node ng-include="'/templates/tree-folders.html'" collapsed="{{ initialState }}"></li>
                     </ol>
                   </div>
                 </div>
               </li>
-
-
-                    <!-- <div -->
-                    <!--     data-angular-treeview="true" -->
-                    <!--     data-tree-id="abc" -->
-                    <!--     data-tree-model="treedata" -->
-                    <!--     data-node-id="id" -->
-                    <!--     data-node-label="label" -->
-                    <!--     data-node-children="children" > -->
-                    <!-- </div> -->
               <li data-match-route="/tasks"><a href="/tasks">My Tasks</a></li>
               <li data-match-route="/reports"><a href="/reports">Reports</a></li>
             </ul>
@@ -143,7 +114,6 @@
     <script src="/vendor/danialfarid-angular-file-upload/dist/angular-file-upload.min.js"></script>
 
     <script src="/vendor/angular-resource/angular-resource.js" type='text/javascript'></script>
-    <script src="/vendor/angular-treeview/angular.treeview.js" type='text/javascript'></script>
     <script src="/vendor/angular-ui-router/release/angular-ui-router.js" type='text/javascript'></script>
     <script src="/vendor/angular-ui-bootstrap-bower/ui-bootstrap.js" type='text/javascript'></script>
     <script src="/vendor/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js" type='text/javascript'></script>

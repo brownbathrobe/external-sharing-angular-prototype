@@ -1,0 +1,9 @@
+<div ui-tree-handle class="tree-node tree-node-content">
+  <a class="btn btn-primary btn-xs" data-nodrag="" ng-click="toggle(this)">
+    <span class="glyphicon" ng-class="{'glyphicon-folder-close': collapsed, 'glyphicon-folder-open': !collapsed}"></span>
+  </a>
+  <a href="/library?folder={{node.nodeId}}">{{node.name}}</a>
+</div>
+<ol ui-tree-nodes ng-class="{hidden: collapsed}" ng-model="node.nodes">
+  <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'/templates/tree-folders.html'" collapsed="{{ initialState }}"></li>
+</ol>
