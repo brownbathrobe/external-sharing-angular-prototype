@@ -1,11 +1,11 @@
 [
-  '{{repeat(8)}}',
+  '{{repeat(40)}}',
   {
     "size": '{{floating(0,5,1)}} MB',
     "islocked": '{{bool()}}',
     "version": 1,
     "mimetype": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-    "type": '{{random("pdf", "jpg", "mp3")}}',
+    "type": "{{random('pdf', 'doc', 'ppt', 'xls', 'html', 'mp4', 'mp3')}}",
     "name": function (tags) {
       return tags.company() + "." + this.type;
     },
@@ -13,8 +13,8 @@
     "description": '{{lorem(3)}}',
     "title": function (tags) { return this.name; },
     "nodeId": '{{guid()}}',
-    "created": '{{date(null, null,"MM-dd-YYYY")}}',
-    "modifed": '{{date(null, null,"MM-dd-YYYY")}}',
+    "created": '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
+    "modified": '{{date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss")}}',
     "security":"Cisco Highly Confidential",
     "modifier":"pobabu",
     "downloadUrl": function (tags) {

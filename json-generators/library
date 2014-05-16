@@ -10,17 +10,17 @@
   ],
 
   children: function (tags) {
-    var results = [], folder;
+    var results = [], folder, fileType;
 
     for (var i = 0; i < tags.integer(40, 40) ; i++) {
       folder = Math.floor(Math.random() * 100);
 
       if (folder % 3 !== 0) {
-
+        fileType = tags.random('pdf', 'doc', 'ppt', 'xls', 'html', 'mp4', 'mp3')
         results.push({
           id: tags.guid(),
-          name: tags.company() + tags.random('.pdf', '.exe', '.xls'),
-          type: 'file',
+          type: fileType,
+          name: tags.company() + "." + fileType,
           size: tags.floating(0,4,2) + "MB",
           created: tags.date(new Date(2014, 0, 1), new Date(), "YYYY-MM-ddThh:mm:ss"),
           creator: tags.firstName() + " " + tags.surname(),
@@ -37,4 +37,3 @@
     return results;
   }
 }
-
