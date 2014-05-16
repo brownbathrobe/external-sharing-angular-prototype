@@ -1,5 +1,5 @@
-angular.module('esApp').factory('LibraryData', function ($resource, $q) {
-  var resource = $resource("/api/library");
+angular.module('esApp').factory('LibraryData', function ($resource, $q, Config) {
+  var resource = $resource(Config.apiPath + '/library');
   return {
     getStuff: function (query) {
       query || (query = {});

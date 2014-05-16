@@ -1,5 +1,5 @@
-angular.module('esApp').factory('DocumentsData', function ($resource, $q) {
-  var resource = $resource("/api/documents");
+angular.module('esApp').factory('DocumentsData', function ($resource, $q, Config) {
+  var resource = $resource(Config.apiPath + "/documents");
   return {
     getAll: function () {
       var deferred = $q.defer();

@@ -1,4 +1,4 @@
-angular.module('esApp').factory('NotificationsData', function ($resource, $q) {
-  var resource = $resource("/api/notifications");
+angular.module('esApp').factory('NotificationsData', function ($resource, $q, Config) {
+  var resource = $resource(Config.apiPath + "/notifications");
   return resource;
 });

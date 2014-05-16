@@ -1,11 +1,10 @@
-angular.module('esApp').factory('FileUpload', function ($upload, $q) {
+angular.module('esApp').factory('FileUpload', function ($upload, $q, Config) {
   return {
     upload: function (file) {
-      debugger;
       var deferred = $q.defer();
 
       $upload.upload({
-        url: '/api/upload', //upload.php script, node.js route, or servlet url
+        url: Config.apiPath + '/upload', //upload.php script, node.js route, or servlet url
         // method: 'POST' or 'PUT',
         // headers: {'header-key': 'header-value'},
         // withCredentials: true,

@@ -1,5 +1,5 @@
-angular.module('esApp').factory('RecentData', function ($resource, $q) {
-  var resource = $resource('/api/recent');
+angular.module('esApp').factory('RecentData', function ($resource, $q, Config) {
+  var resource = $resource(Config.apiPath + '/recent');
   return {
     getStuff: function () {
       var deferred = $q.defer();

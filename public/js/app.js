@@ -186,3 +186,9 @@ esApp.directive('fileUpload', function () {
     }
   }
 });
+
+esApp.factory('Config', function () {
+  return {
+    apiPath: '/api'
+  };
+});

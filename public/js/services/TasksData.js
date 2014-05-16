@@ -1,3 +1,4 @@
-angular.module('esApp').factory('TasksData', function ($resource, $q) {
-  return $resource('/api/tasks');
+angular.module('esApp').factory('TasksData', function ($resource, $q, Config) {
+  var resource = $resource(Config.apiPath + '/tasks');
+  return resource;
 });

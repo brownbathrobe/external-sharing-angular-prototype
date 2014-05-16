@@ -1,3 +1,4 @@
-angular.module('esApp').factory('TreeData', function ($resource, $q) {
-  return $resource('/api/tree');
+angular.module('esApp').factory('TreeData', function ($resource, $q, Config) {
+  var resource = $resource(Config.apiPath + '/tree');
+  return resource;
 });
