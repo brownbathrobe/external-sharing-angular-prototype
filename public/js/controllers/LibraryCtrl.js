@@ -46,24 +46,27 @@ function ($scope, LibraryData, $stateParams, $location, folderData, $modal) {
 
   $scope.setPagingData();
 
-
   $scope.upload = function () {
     var modalInstance = $modal.open({
       templateUrl: '/templates/uploadModal.html',
       controller: ModalInstanceCtrl
     });
   }
-
-  var ModalInstanceCtrl = function ($scope, $modalInstance) {
-    $scope.ok = function () {
-      alert('ok');
-      $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  };
-
 }]);
 
+var ModalInstanceCtrl = function ($scope, $modalInstance, FileUpload) {
+  $scope.file = {};
+
+  $scope.ok = function () {
+    FileUpload.upload($scope.file).then(function () {
+      $modalInstance.close();
+    }, function (error) {
+      alert(error);
+      $modalInstance.close();
+    });
+  };
+
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  };
+};
