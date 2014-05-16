@@ -28,22 +28,22 @@ angular.module('esApp').controller('TasksCtrl', function (tasks, $scope, $modal,
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
+
+  // Please note that $modalInstance represents a modal window (instance) dependency.
+  // It is not the same as the $modal service used above.
+  var ModalInstanceCtrl = function ($scope, $modalInstance, task) {
+
+    var originalTask = _.clone(task);
+    $scope.task = task;
+
+    $scope.ok = function () {
+      $modalInstance.close(task);
+    };
+
+    $scope.cancel = function () {
+      $scope.task.name = originalTask.name;
+      $modalInstance.dismiss('cancel');
+    };
+  };
 });
 
-// Please note that $modalInstance represents a modal window (instance) dependency.
-// It is not the same as the $modal service used above.
-
-var ModalInstanceCtrl = function ($scope, $modalInstance, task) {
-
-  var originalTask = _.clone(task);
-  $scope.task = task;
-
-  $scope.ok = function () {
-    $modalInstance.close(task);
-  };
-
-  $scope.cancel = function () {
-    $scope.task.name = originalTask.name;
-    $modalInstance.dismiss('cancel');
-  };
-};

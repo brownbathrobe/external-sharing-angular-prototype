@@ -1,6 +1,8 @@
-angular.module('esApp').controller('LibraryCtrl',
-['$scope', 'LibraryData', '$stateParams', '$location', 'folderData',
-function ($scope, LibraryData, $stateParams, $location, folderData) {
+var esApp = angular.module('esApp');
+esApp.controller('LibraryCtrl',
+['$scope', 'LibraryData', '$stateParams', '$location', 'folderData', '$modal',
+function ($scope, LibraryData, $stateParams, $location, folderData, $modal) {
+
   function parseFolderData(directory) {
     $scope.data = directory;
     $scope.children = directory.children;
@@ -43,4 +45,25 @@ function ($scope, LibraryData, $stateParams, $location, folderData) {
   };
 
   $scope.setPagingData();
+
+
+  $scope.upload = function () {
+    var modalInstance = $modal.open({
+      templateUrl: '/templates/uploadModal.html',
+      controller: ModalInstanceCtrl
+    });
+  }
+
+  var ModalInstanceCtrl = function ($scope, $modalInstance) {
+    $scope.ok = function () {
+      alert('ok');
+      $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+  };
+
 }]);
+

@@ -43,10 +43,14 @@ app.get('/api/notifications', function (req, res) {
   res.send(mockNotifications);
 });
 
+app.post('/api/upload', function (req, res) {
+  console.log('================> UPLOAD');
+  res.send(req.body);
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('*', function(req, res){
-  console.log('=================> catchall: ' + req.url);
   res.sendfile(__dirname + '/public/index.html');
 });
 
