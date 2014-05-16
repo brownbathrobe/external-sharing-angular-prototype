@@ -14,7 +14,7 @@ angular.module('esApp').factory('FileUpload', function ($upload, $q) {
           description: file.description
         },
 
-        file: file.file, // or list of files: $files for html5 only
+        file: file.files[0], // or list of files: $files for html5 only
         /* set the file formData name ('Content-Desposition'). Default is 'file' */
         //fileFormDataName: myFile, //or a list of names for multiple files (html5).
         /* customize how data is added to formData. See #40#issuecomment-28612000 for sample code */
