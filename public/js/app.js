@@ -193,3 +193,18 @@ esApp.factory('Config', function () {
     apiPath: '/api'
   };
 });
+
+esApp.directive('activeSegment', function ($location) {
+  return {
+    restrict: "E",
+    scope: {
+      segment: "=",
+      current: "="
+    },
+    replace: true,
+    template:
+      '<li ng-class="{ active: segment.id === current.id }" ng-switch="segment.id === current.id">' +
+      '<span ng-switch-when="true">{{ segment.name }}</span>' +
+      '<a ng-switch-when="false" href="/library?folder={{segment.id}}">{{segment.name}}</a></li>'
+  }
+});

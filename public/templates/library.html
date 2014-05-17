@@ -1,13 +1,16 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <ul class="breadcrumb">
-      <li ng-class="{ active: dir === library.current() }" ng-repeat="dir in path">
-        <a href="/library?{{dir.id}}" ng-click="doSomething(dir)">{{dir.name}}</a>
-      </li>
-    </ul>
+    <div class="row">
+      <div class="col-xs-10">
+        <ul class="breadcrumb" style="margin-bottom: 10px;">
+          <active-segment ng-repeat="segment in path" segment="segment" current="directory"></active-segment>
+        </ul>
+      </div>
+      <div class="col-xs-2">
+        <button class="btn btn-primary pull-right" ng-click="upload()">Upload</button>
+      </div>
   </div>
 
-  <button class="btn btn-primary" ng-click="upload()">Upload</button>
 
   <div ng-controller='TableCtrl'>
     <div class="gridStyle" ng-grid="gridOptions"></div>

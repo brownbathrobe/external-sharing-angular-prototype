@@ -4,27 +4,27 @@ esApp.controller('LibraryCtrl',
 function ($scope, LibraryData, $stateParams, $location, folderData, $modal) {
 
   function parseFolderData(directory) {
-    $scope.data = directory;
+    $scope.directory = directory;
     $scope.children = directory.children;
     $scope.path = directory.path;
   }
 
   parseFolderData(folderData);
 
-  $scope.$on('loadFolder', function () {
-    console.log('loading data');
-  });
-
   // load new directory when the query string changes
   $scope.$watch(function () {
-    return $location.search()
+    return $location.search();
   }, function (newVal, oldVal) {
-    console.log('loading more stuff');
-  });
+    if (newVal === oldVal) return;
+    console.log('loading more stuff', newVal);
+    LibraryData.getStuff().then(function (res) {
+     parseFolderData(res);
 
-  $scope.doSomething = function () {
-    $scope.$emit('loadFolder');
-  };
+    /* this is just to test the breadcrumb  because the mock data
+     * directory ids don't really correspond to anything */
+    $scope.directory.id = newVal.folder;
+    });
+  });
 
   $scope.pagingOptions = {
     pageSizes: [5, 10, 15],
