@@ -1,16 +1,16 @@
 <div class="action-icons">
-  <span class="glyphicon glyphicon-arrow-up" ng-click="upload()"></span>
-  <span class="glyphicon glyphicon-arrow-down" ng-click="download()"></span>
-  <span class="glyphicon glyphicon-info-sign" ng-click="getInfo()"></span>
-  <span class="glyphicon glyphicon-eye-open" ng-click="preview()"></span>
+  <span class="glyphicon glyphicon-arrow-up" ng-click="uploadVersion(row)"></span>
+  <span class="glyphicon glyphicon-arrow-down" ng-click="download(row)"></span>
+  <span class="glyphicon glyphicon-info-sign" ng-click="getInfo(row)"></span>
+  <span class="glyphicon glyphicon-eye-open" ng-click="preview(row)"></span>
   <span class="dropdown">
     <span class="dropdown-toggle">
       <span class="glyphicon glyphicon-chevron-down"></span>
     </span>
     <ul class="dropdown-menu dropdown-menu-right">
-      <li><a dropdown-toggle ng-click="startWorkflow()">Start Workflow</a></li>
-      <li><a dropdown-toggle ng-click="getHistory()">Version History</a></li>
-      <li><a dropdown-toggle ng-click="viewPermissions()">View Permissions</a></li>
+      <li><a dropdown-toggle ng-click="startWorkflow(row)">Start Workflow</a></li>
+      <li><a dropdown-toggle ng-click="versionHistory(row)">Version History</a></li>
+      <li><a dropdown-toggle ng-click="viewPermissions(row)">View Permissions</a></li>
     </ul>
   </span>
 </div>

@@ -38,7 +38,6 @@ angular.module('esApp').controller('RecentCtrl', function ($scope, RecentData, o
   }
 
   $scope.$watch('pagingOptions', function (newVal, oldVal) {
-    debugger;
     $scope.filteredDocuments = getPageSlice($scope.allSorted);
   }, true);
 

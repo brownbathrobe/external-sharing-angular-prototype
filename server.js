@@ -42,18 +42,18 @@ app.post('/api/upload', function (req, res) {
 });
 
 // PROXIED STUFF
-app.get('/api/*', function (req, res) {
-  var pattern = /\/api\/(.+)/,
-    path = req.url.match(pattern)[1],
-    query = req.query;
-
-  var API_PATH = "http://edm-wt-tst-1:9090/alfresco/service/ext",
-      token = "TICKET_aa7c9e0fdde378cd75dbe345a604a6bb03f6670f",
-      newurl = API_PATH + "/" + path + (_.isEmpty(query) ? "?" : "&") + "alf_ticket=" + token;
-
-  console.log(newurl);
-  request(newurl).pipe(res)
-});
+// app.get('/api/*', function (req, res) {
+//   var pattern = /\/api\/(.+)/,
+//     path = req.url.match(pattern)[1],
+//     query = req.query;
+// 
+//   var API_PATH = "http://edm-wt-tst-1:9090/alfresco/service/ext",
+//       token = "TICKET_aa7c9e0fdde378cd75dbe345a604a6bb03f6670f",
+//       newurl = API_PATH + "/" + path + (_.isEmpty(query) ? "?" : "&") + "alf_ticket=" + token;
+// 
+//   console.log(newurl);
+//   request(newurl).pipe(res)
+// });
 
 app.get('/api/recent', function (req, res) {
   res.send(mockRecent);
