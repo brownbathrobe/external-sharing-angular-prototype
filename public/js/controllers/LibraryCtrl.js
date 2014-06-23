@@ -93,7 +93,7 @@ function ($scope, LibraryData, $stateParams, $location, folderData, $modal) {
       };
     };
     var modalInstance = $modal.open({
-      templateUrl: '/templates/uploadModal.html',
+      templateUrl: 'templates/uploadModal.html',
       controller: ModalInstanceCtrl
     });
   }

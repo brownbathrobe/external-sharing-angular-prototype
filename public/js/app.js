@@ -1,6 +1,5 @@
 'use strict';
-
-var esApp = angular.module('esApp', ['ui.bootstrap', 'ui.router', 'ngResource', 'ui.tree', 'ngGrid', 'angularFileUpload']);
+var esApp = angular.module('esApp', ['ui.bootstrap', 'ui.router', 'ngResource', 'ui.tree', 'ngGrid', 'angularFileUpload', 'esTemplates']);
 esApp.run(
   ['$rootScope', '$state', '$stateParams',
     function ($rootScope, $state, $stateParams) {
@@ -40,13 +39,13 @@ esApp.run(
 
         .state("home", {
           url: "/",
-          templateUrl: '/templates/recent.html',
+          templateUrl: 'templates/recent.html',
           controller: 'RecentCtrl'
         })
 
         .state('library', {
           url: '/library',
-          templateUrl: "/templates/library.html",
+          templateUrl: "templates/library.html",
           controller: 'LibraryCtrl',
           resolve: {
             folderData: function ($q, $location, LibraryData) {
@@ -82,7 +81,7 @@ esApp.run(
 esApp.directive('rowTemplate', function () {
   return {
     restrict: "E",
-    templateUrl: "/row-template.html",
+    templateUrl: "row-template.html",
     link: function ($scope) {
       $scope.doIt = function () {
         alert('doit!!!');
@@ -94,7 +93,7 @@ esApp.directive('rowTemplate', function () {
 esApp.directive('actions', function () {
   return {
     restrict: "E",
-    templateUrl: "/actions.html"
+    templateUrl: "actions.html"
   }
 });
 

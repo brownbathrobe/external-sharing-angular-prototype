@@ -1,4 +1,4 @@
-module.exports = [
+[
   {
     "relativePath": "/company_home/sites/alfext/documentLibrary/smalluva/test ext",
     "name": "AT&T",
@@ -138,5 +138,5 @@ module.exports = [
         "type":"folder"
       }
     ]
-  },
-];
+  }
+]

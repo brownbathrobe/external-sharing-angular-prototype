@@ -7,10 +7,14 @@ var express = require('express'),
     mockNotifications = require('./data/notifications'),
     mockRecent = require('./data/recent'),
     mockLibrary = require('./data/library'),
-    mockTree = require('./data/tree'),
+    // mockTree = require('./data/tree'),
     path = require('path'),
+<<<<<<< HEAD
     request = require('request'),
     _ = require('lodash'),
+=======
+    fs = require('fs'),
+>>>>>>> gulpfile
     port = 3030;
 
 // logging
@@ -18,7 +22,8 @@ app.use(morgan('short'));
 app.use(bodyParser());
 
 app.get('/api/tree', function (req, res) {
-  res.send(mockTree);
+  fs.createReadStream('./data/tree.js').pipe(res);
+  // res.send(mockTree);
 });
 
 app.get('/api/documents', function (req, res) {

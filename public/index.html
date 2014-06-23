@@ -65,7 +65,7 @@
                 <div ng-controller="TreeCtrl">
                   <div data-drag-enabled="false" ui-tree id="tree-root">
                     <ol ui-tree-nodes="" ng-model="data">
-                      <li ng-repeat="node in data" ui-tree-node ng-include="'/templates/tree-folders.html'" collapsed="{{ initialState }}"></li>
+                      <li ng-repeat="node in data" ui-tree-node ng-include="'templates/tree-folders.html'" collapsed="{{ initialState }}"></li>
                     </ol>
                   </div>
                 </div>
@@ -135,5 +135,8 @@
     <script src="/js/controllers/LibraryCtrl.js" type='text/javascript'></script>
     <script src="/js/controllers/TableCtrl.js" type='text/javascript'></script>
     <script src="/js/directives/Task.js" type='text/javascript'></script>
+
+
+    <script src="/templates.js" type='text/javascript'></script>
   </body>
 </html>

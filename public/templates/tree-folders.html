@@ -5,5 +5,5 @@
   <a href="/library?folder={{node.nodeId}}">{{node.name}}</a>
 </div>
 <ol ui-tree-nodes ng-class="{hidden: collapsed}" ng-model="node.nodes">
-  <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'/templates/tree-folders.html'" collapsed="{{ initialState }}"></li>
+  <li ng-repeat="node in node.nodes" ui-tree-node ng-include="'templates/tree-folders.html'" collapsed="{{ initialState }}"></li>
 </ol>
